@@ -10,8 +10,8 @@ namespace CurrencyObserver.Core.Interfaces
 {
     internal interface ICurrencyAnalizer
     {
-        CurrencyRateRecord GetMaxRate(List<ValCursXml> rates);
-        CurrencyRateRecord GetMinRate(List<ValCursXml> rates);
-        decimal GetAverageRate(List<ValCursXml> rates);
+        CurrencyRateRecord GetMaxRate(List<ValuteCursXml> rates);
+        CurrencyRateRecord GetMinRate(List<ValuteCursXml> rates);
+        decimal GetAverageRate(List<ValuteCursXml> rates);
     }
 }

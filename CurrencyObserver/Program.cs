@@ -47,8 +47,8 @@ namespace CurrencyObserver
                 var minRate = analyzer.GetMinRate(rates);
                 var averageRate = analyzer.GetAverageRate(rates);
 
-                Console.WriteLine($"Max: {maxRate.CharCode} = {maxRate.Value} ({maxRate.Date:dd.MM.yyyy})");
-                Console.WriteLine($"Min: {minRate.CharCode} = {minRate.Value} ({minRate.Date:dd.MM.yyyy})");
+                Console.WriteLine($"Max: {maxRate.Name} = {maxRate.VunitRate} ({maxRate.Date:dd.MM.yyyy})");
+                Console.WriteLine($"Min: {minRate.Name} = {minRate.VunitRate} ({minRate.Date:dd.MM.yyyy})");
                 Console.WriteLine($"Average: {averageRate:F4}");
             }
             catch (Exception ex)

@@ -9,7 +9,7 @@ namespace CurrencyObserver.Core.Interfaces
 {
     public interface ICurrencyService
     {
-        Task<ValCursXml> GetDailyRatesAsync(DateTime date);
-        Task<List<ValCursXml>> GetRatesForPeriodAsync(DateTime start, DateTime end);
+        Task<ValuteCursXml> GetDailyRatesAsync(DateTime date);
+        Task<List<ValuteCursXml>> GetRatesForPeriodAsync(DateTime start, DateTime end);
     }
 }

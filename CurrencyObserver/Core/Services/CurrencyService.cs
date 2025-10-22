@@ -17,14 +17,14 @@ namespace CurrencyObserver.Core.Services
             _client = client;
         }
 
-        public Task<ValCursXml> GetDailyRatesAsync(DateTime date)
+        public Task<ValuteCursXml> GetDailyRatesAsync(DateTime date)
         {
             return _client.FetchDailyRatesAsync(date);
         }
 
-        public Task<List<ValCursXml>> GetRatesForPeriodAsync(DateTime start, DateTime end)
+        public Task<List<ValuteCursXml>> GetRatesForPeriodAsync(DateTime start, DateTime end)
         {
-            var tasks = new List<Task<ValCursXml>>();
+            var tasks = new List<Task<ValuteCursXml>>();
 
             for (var date = start; date <= end; date = date.AddDays(1))
             {

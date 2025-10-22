@@ -9,6 +9,6 @@ namespace CurrencyObserver.Core.Interfaces
 {
     public interface IExchangeRateClient
     {
-        Task<ValCursXml> FetchDailyRatesAsync(DateTime date);
+        Task<ValuteCursXml> FetchDailyRatesAsync(DateTime date);
     }
 }

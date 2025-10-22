@@ -13,7 +13,7 @@ namespace CurrencyObserver.Core.Utility.Comparers
         {
             if (x == null || y == null) return 0;
 
-            return x.Value.CompareTo(y.Value);
+            return x.VunitRate.CompareTo(y.VunitRate);
         }
     }
 }

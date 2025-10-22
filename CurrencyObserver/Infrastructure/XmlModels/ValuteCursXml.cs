@@ -10,7 +10,7 @@ using static CurrencyObserver.Program;
 namespace CurrencyObserver.Infrastructure.XmlModels
 {
     [XmlRoot("ValCurs")]
-    public class ValCursXml
+    public class ValuteCursXml
     {
         [XmlAttribute("Date")]
         public string DateRaw

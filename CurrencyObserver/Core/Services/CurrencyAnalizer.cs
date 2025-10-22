@@ -11,7 +11,7 @@ namespace CurrencyObserver.Core.Services
 {
     public class CurrencyAnalizer : ICurrencyAnalizer
     {
-        public decimal GetAverageRate(List<ValCursXml> rates)
+        public decimal GetAverageRate(List<ValuteCursXml> rates)
         {
             // Extract all currency values from the provided rates
             // Then cast them to "decimal" from "decimal?"
@@ -26,7 +26,7 @@ namespace CurrencyObserver.Core.Services
         }
 
         // I could avoid repeating the code, but then the solution wouldn’t look very good, so I’ll leave it as is.
-        public CurrencyRateRecord GetMaxRate(List<ValCursXml> rates)
+        public CurrencyRateRecord GetMaxRate(List<ValuteCursXml> rates)
         {
             // I want to override operators so badly
             // Unfortunately it is not good solution for this system
@@ -39,15 +39,15 @@ namespace CurrencyObserver.Core.Services
                 {
                     CharCode = v.CharCode,
                     Name = v.Name,
-                    Value = v.Value,
+                    VunitRate = v.VunitRate,
                     Date = r.Date
                 }));
 
-            return valutes.MaxBy(v => v.Value) ?? 
+            return valutes.MaxBy(v => v.VunitRate) ?? 
                 throw new InvalidOperationException("Failed to determine the maximum — the collection is empty.");
         }
 
-        public CurrencyRateRecord GetMinRate(List<ValCursXml> rates)
+        public CurrencyRateRecord GetMinRate(List<ValuteCursXml> rates)
         {
             if (rates == null || rates.Count == 0)
                 throw new ArgumentException("No data available for currency analysis.", nameof(rates));
@@ -57,11 +57,11 @@ namespace CurrencyObserver.Core.Services
                 {
                     CharCode = v.CharCode,
                     Name = v.Name,
-                    Value = v.Value,
+                    VunitRate = v.VunitRate,
                     Date = r.Date
                 }));
 
-            return valutes.MinBy(v => v.Value) ??
+            return valutes.MinBy(v => v.VunitRate) ??
                 throw new InvalidOperationException("Failed to determine the maximum — the collection is empty.");
         }
     }

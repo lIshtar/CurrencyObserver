@@ -18,17 +18,17 @@ namespace CurrencyObserver.Infrastructure.ApiClients
         public CbCurrencyClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _dailySerializer = new XmlSerializer(typeof(ValCursXml));
+            _dailySerializer = new XmlSerializer(typeof(ValuteCursXml));
         }
 
-        public async Task<ValCursXml> FetchDailyRatesAsync(DateTime date)
+        public async Task<ValuteCursXml> FetchDailyRatesAsync(DateTime date)
         {
             var url = string.Format(DailyRatesEndpoint, date);
 
             using var response = await _httpClient.GetStreamAsync(url)
                 ?? throw new HttpRequestException("Failed to get daily rates.");
             
-            var valCurs = (ValCursXml?)_dailySerializer.Deserialize(response) 
+            var valCurs = (ValuteCursXml?)_dailySerializer.Deserialize(response) 
                 ?? throw new XmlDeserializationException("Failed to deserialize daily rates."); ;
 
             return valCurs;
