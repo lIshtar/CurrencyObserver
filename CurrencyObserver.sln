@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyObserver", "CurrencyObserver\CurrencyObserver.csproj", "{3DC04408-757F-46E6-8AF8-3FB918A70867}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DC04408-757F-46E6-8AF8-3FB918A70867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC04408-757F-46E6-8AF8-3FB918A70867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC04408-757F-46E6-8AF8-3FB918A70867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC04408-757F-46E6-8AF8-3FB918A70867}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7F8A129-C727-4C6D-9E43-7D6CC7018483}
+	EndGlobalSection
+EndGlobal
