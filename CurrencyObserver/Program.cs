@@ -45,11 +45,14 @@ namespace CurrencyObserver
                 var rates = await currencyService.GetRatesForPeriodAsync(startDate, endDate);
                 var maxRate = analyzer.GetMaxRate(rates);
                 var minRate = analyzer.GetMinRate(rates);
-                var averageRate = analyzer.GetAverageRate(rates);
+                var averageRates = analyzer.GetAverageRate(rates);
 
                 Console.WriteLine($"Max: {maxRate.Name} = {maxRate.VunitRate} ({maxRate.Date:dd.MM.yyyy})");
                 Console.WriteLine($"Min: {minRate.Name} = {minRate.VunitRate} ({minRate.Date:dd.MM.yyyy})");
-                Console.WriteLine($"Average: {averageRate:F4}");
+
+                Console.WriteLine("\nAverages:");
+
+                averageRates.ToList().ForEach(r => Console.WriteLine($"{r.Name} : {r.VunitRate:F4}"));
             }
             catch (Exception ex)
             {

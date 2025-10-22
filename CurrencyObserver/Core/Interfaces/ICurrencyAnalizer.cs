@@ -12,6 +12,6 @@ namespace CurrencyObserver.Core.Interfaces
     {
         CurrencyRateRecord GetMaxRate(List<ValuteCursXml> rates);
         CurrencyRateRecord GetMinRate(List<ValuteCursXml> rates);
-        decimal GetAverageRate(List<ValuteCursXml> rates);
+        IEnumerable<CurrencyRateRecord> GetAverageRate(List<ValuteCursXml> rates);
     }
 }

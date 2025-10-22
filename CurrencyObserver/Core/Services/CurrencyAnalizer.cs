@@ -11,18 +11,30 @@ namespace CurrencyObserver.Core.Services
 {
     public class CurrencyAnalizer : ICurrencyAnalizer
     {
-        public decimal GetAverageRate(List<ValuteCursXml> rates)
+        public IEnumerable<CurrencyRateRecord> GetAverageRate(List<ValuteCursXml> rates)
         {
             // Extract all currency values from the provided rates
             // Then cast them to "decimal" from "decimal?"
             // ("decimal?" does not support Average() directly)
-            var values = rates
-                .SelectMany(r => r.Valutes
-                .Select(v => v.Value));
+            var valutes = rates.SelectMany(r => r.Valutes.Select(
+                v => new CurrencyRateRecord
+                {
+                    CharCode = v.CharCode,
+                    Name = v.Name,
+                    VunitRate = v.VunitRate,
+                    Date = r.Date
+                })); ;
 
-            return values.Any() 
-                ? values.Average() 
-                : 0m;
+            var averages = valutes
+                .GroupBy(v => v.CharCode)
+                .Select(g => new CurrencyRateRecord
+                {
+                    CharCode = g.Key,
+                    Name = g.First().Name,
+                    VunitRate = g.Average(v => v.VunitRate)
+                });
+
+            return averages;
         }
 
         // I could avoid repeating the code, but then the solution wouldn’t look very good, so I’ll leave it as is.
