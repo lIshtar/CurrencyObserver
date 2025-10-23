@@ -1,9 +1,6 @@
 ﻿using CurrencyObserver.Core.Interfaces;
 using CurrencyObserver.Core.Services;
 using CurrencyObserver.Infrastructure.ApiClients;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System.Text;
 
 namespace CurrencyObserver
@@ -15,25 +12,10 @@ namespace CurrencyObserver
             // Register encoding provider for CB XML (Windows-1251)
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var host = Host.CreateDefaultBuilder()
-                .ConfigureServices((context, services) =>
-                {
-                    services.AddHttpClient();
-                    services.AddTransient<IExchangeRateClient, CbCurrencyClient>();
-                    services.AddTransient<ICurrencyAnalizer, CurrencyAnalizer>();
-                    services.AddTransient<ICurrencyService, CurrencyService>();
-
-                })
-                .ConfigureLogging(logging =>
-                {
-                    logging.SetMinimumLevel(LogLevel.Warning);
-                })
-                .Build();
-
-            var services = host.Services.CreateScope().ServiceProvider;
-
-            var currencyService = services.GetRequiredService<ICurrencyService>();
-            var analyzer = services.GetRequiredService<ICurrencyAnalizer>();
+            var httpClient = new HttpClient();  
+            IExchangeRateClient exchangeRateClient = new CbCurrencyClient(httpClient);
+            ICurrencyService currencyService = new CurrencyService(exchangeRateClient);
+            ICurrencyAnalizer analyzer = new CurrencyAnalizer();
 
             DateTime endDate = DateTime.Today;
             DateTime startDate = endDate.AddDays(-90);
@@ -58,6 +40,8 @@ namespace CurrencyObserver
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
+
+            Console.ReadLine();
         }
     }
 }
